@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Button?>
+
+<StackPane maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" 
+			xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+			fx:controller="lab3_2b.Controller">
+			<Button fx:id="button" text="while(true)" alignment="CENTER"/>
+</StackPane>
