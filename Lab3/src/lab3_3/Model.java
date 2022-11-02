@@ -13,23 +13,22 @@ public class Model implements IModel{
     }
 
     public void stop(){
+    	if (c != null)
         c.CalcStop();
     }
 
     @Override
     public void pause() {
+    	if (c != null)
         c.CalcPause();
     }
 
     @Override
     public void resume() {
+    	if (c != null)
         c.CalcResume();
     }
 
-    @Override
-    public boolean is_alive() {
-        return c.isAlive();
-    }
 }
 
 
@@ -37,7 +36,7 @@ class Calc extends Thread{
 
     Updatable updater;
 
-    boolean pause = false;
+    private boolean pause = false;
     
     public Calc(Updatable updater)
     {
@@ -46,7 +45,7 @@ class Calc extends Thread{
 
     void CalcStop(){
     	updater.update(0.0);
-        this.stop();
+        this.interrupt();
     }
 
     void CalcPause(){
@@ -62,21 +61,21 @@ class Calc extends Thread{
 
     @Override
     public void run() {
-        for(int i = 0; i< 1000; i++){
+        for(int i = 0; i < 1000; i++){
         	synchronized (this) {
         		if (pause) {
 					try {
 						this.wait();
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						break;
 					}
         		}
         	}
-        		updater.update((double) i / 1000);
+        		updater.update(i / 1000.0);
         		try {
         			sleep(20);
         		} catch (InterruptedException e) {
-        				e.printStackTrace();
+        				break;
                 	}
 
         		}

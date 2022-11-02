@@ -5,5 +5,4 @@ public interface IModel {
 	    void stop();
 	    void pause();
 	    void resume();
-	    boolean is_alive();
 }
